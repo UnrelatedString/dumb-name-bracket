@@ -1,0 +1,29 @@
+package:
+  name: dumb-name-bracket
+  description: a dumb bracket for names that is not as smart as it sounds 
+  dependencies:
+    - prelude: ">=6.0.2 <7.0.0"
+    - aff
+    - aff-promise
+    - affjax
+    - affjax-web
+    - css
+    - effect
+    - foldable-traversable
+    - halogen
+    - halogen-css
+    - transformers
+  test:
+    main: Test.Main
+    dependencies:
+      - spec
+      - spec-quickcheck
+      - spec-node
+      - my-spec-reporter
+workspace:
+  packageSet:
+    registry: 68.1.0
+  extraPackages:
+    my-spec-reporter:
+      git: https://github.com/UnrelatedString/my-spec-reporter.git
+      ref: main
