@@ -6,8 +6,10 @@ module Data.Bracket
 import Prelude
 
 type Config =
-  { -- perMatch :: Int
+  { perMatch :: Int
   -- , winners :: Int -- figuring out how to actually distribute that sounds like not for now
   -- , eliminationRounds :: Int -- more realistic but way unnecessary
   }
 
+-- Counting backwards from finals at round 0
+newtype Round = Round Int
