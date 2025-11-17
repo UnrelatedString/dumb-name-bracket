@@ -25,6 +25,9 @@ main = runSpecAndExitProcess [prettyReporter] do
 
 bracketSuite :: Spec Unit
 bracketSuite = describe "Core bracket logic" do
-  it "12 seeds are paired into 1v1v1s correctly" do
-    for_ (enumFromTo 0 11 `zip` [0,1,2,3,7,6,5,4,8,9,10,11]) \(Tuple x seed) ->
-      boustrophedonUnDivMod 3 (x `div` 3) (x `mod` 3) `shouldEqual` Seed seed
+  describe "12 seeds are paired into 1v1v1s correctly" do
+    for_ (enumFromTo 0 11 `zip` [0,1,2,3,7,6,5,4,8,9,10,11]) \(Tuple x seed) -> do
+      let match = x `div` 3
+      let slot = x `mod` 3
+      it ("player " <> show slot <> " in match " <> show match) do
+        boustrophedonUnDivMod 3 match slot `shouldEqual` Seed seed
