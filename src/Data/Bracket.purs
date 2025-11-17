@@ -8,6 +8,7 @@ module Data.Bracket
 
 import Prelude
 import Data.Generic.Rep (class Generic)
+import Data.Int (pow)
 import Data.Show.Generic (genericShow)
 import Data.Newtype (class Newtype)
 import Data.Reflectable
@@ -25,8 +26,6 @@ type Config =
 -- The first round is round 1
 newtype Round :: Int -> Type
 newtype Round outOf = Round Int
--- is this even a thing i can do i forgot
--- derive newtype instance forall (outOf :: Int). Eq (Round outOf)
 
 -- 0-based
 newtype Seed = Seed Int
@@ -40,6 +39,9 @@ instance Show Seed where
 -- Convert to counting backwards where finals are round 0
 roundsLeft :: forall (outOf :: Int). Reflectable outOf Int => Round outOf -> Int
 roundsLeft (Round x) = reflectType (Proxy@outOf) - x
+
+matchesIn :: forall (outOf :: Int). Reflectable outOf Int => Round outOf -> Int
+matchesIn = pow 2 <<< roundsLeft
 
 -- for determining what seeds play in a match LMAO
 boustrophedonUnDivMod :: Int -> Int -> Int -> Seed
