@@ -5,7 +5,10 @@ module Data.Bracket
   ) where
 
 import Prelude
-import Data.Reflectable (reflectType)
+import Data.Reflectable
+  ( class Reflectable
+  , reflectType
+  )
 import Type.Proxy (Proxy(..))
 
 type Config =
@@ -19,5 +22,5 @@ newtype Round :: Int -> Type
 newtype Round outOf = Round Int
 
 -- Convert to counting backwards where finals are round 0
-roundsLeft :: forall (outOf :: Int). Round outOf -> Int
+roundsLeft :: forall (outOf :: Int). Reflectable outOf Int => Round outOf -> Int
 roundsLeft (Round x) = reflectType (Proxy@outOf) - x
