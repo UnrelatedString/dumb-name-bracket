@@ -43,6 +43,6 @@ roundsLeft (Round x) = reflectType (Proxy@outOf) - x
 
 -- for determining what seeds play in a match LMAO
 boustrophedonUnDivMod :: Int -> Int -> Int -> Seed
-boustrophedonUnDivMod divisor quotient remainder
-  | quotient `mod` 2 == 0 = Seed $ quotient * divisor + remainder
-  | otherwise = Seed $ (quotient + 1) * divisor - remainder - 1
+boustrophedonUnDivMod matches quotient remainder
+  | quotient `mod` 2 == 0 = Seed $ quotient * matches + remainder
+  | otherwise = Seed $ (quotient + 1) * matches - remainder - 1
