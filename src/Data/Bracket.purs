@@ -48,3 +48,5 @@ boustrophedonUnDivMod :: Int -> Int -> Int -> Seed
 boustrophedonUnDivMod matches quotient remainder
   | quotient `mod` 2 == 0 = Seed $ quotient * matches + remainder
   | otherwise = Seed $ (quotient + 1) * matches - remainder - 1
+
+seedsInMatch :: Round 
